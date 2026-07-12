@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import AnalysisResult from '@/components/AnalysisResult';
 
 export default function HistoryPage() {
@@ -31,35 +32,55 @@ export default function HistoryPage() {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent mb-6">
-        Analysis History
-      </h1>
+      <div className="mb-8 text-left">
+        <div className="bg-[#C3FF38] text-black border-4 border-black px-4 py-1.5 inline-block tracking-widest font-black uppercase text-xs sm:text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4 rounded-sm">
+          Archive
+        </div>
+        <h1 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-foreground">
+          Analysis History
+        </h1>
+        <p className="text-muted font-bold uppercase tracking-wider text-xs sm:text-sm mt-2">
+          View your past resume analysis metrics and keyword compliance runs.
+        </p>
+      </div>
 
       {history.length === 0 ? (
-        <div className="bg-gray-900/50 p-8 rounded-lg border border-gray-800 text-center text-gray-400">
+        <div className="neo-card p-8 bg-card-bg border-4 border-foreground shadow-[6px_6px_0px_0px_var(--border)] text-center text-muted font-bold uppercase tracking-wider rounded-sm">
           No analysis history found. Run your first analysis from the Dashboard!
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {history.map((item: any) => (
-            <div key={item._id} className="bg-gray-900/40 border border-gray-800 rounded-lg overflow-hidden transition-all">
+            <div 
+              key={item._id} 
+              className="neo-card border-4 border-foreground shadow-[4px_4px_0px_0px_var(--border)] overflow-hidden transition-all bg-card-bg rounded-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_0px_var(--border)]"
+            >
               <div 
-                className="p-4 cursor-pointer hover:bg-gray-800/50 flex justify-between items-center"
+                className="p-5 cursor-pointer flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-card-bg hover:bg-zinc-50 transition-colors"
                 onClick={() => setSelectedId(selectedId === item._id ? null : item._id)}
               >
-                <div>
-                  <div className="text-emerald-400 font-medium text-sm">
-                    {new Date(item.createdAt).toLocaleDateString()}
+                <div className="space-y-1">
+                  <div className="neo-badge bg-[#C3FF38] text-black border-2 border-black font-extrabold text-[10px] py-0.5 px-2">
+                    {new Date(item.createdAt).toLocaleDateString()} {item.matchScore ? `| Match: ${item.matchScore}%` : ''}
                   </div>
-                  <div className="text-gray-300 mt-1 line-clamp-1">{item.jobDescription.substring(0, 100)}...</div>
+                  <div className="text-foreground font-bold text-sm line-clamp-1 mt-1">{item.jobDescription.substring(0, 120)}...</div>
                 </div>
-                <div className="text-gray-500">
-                  {selectedId === item._id ? 'Collapse' : 'View'}
+                <div className="text-xs uppercase font-extrabold tracking-wider border-2 border-foreground bg-card-bg hover:bg-accent px-3 py-1.5 transition-all shadow-[2px_2px_0px_0px_var(--border)] rounded-sm flex-shrink-0">
+                  {selectedId === item._id ? 'Collapse Analysis' : 'View Breakdown'}
                 </div>
               </div>
               
               {selectedId === item._id && (
-                <div className="p-4 border-t border-gray-800 bg-black/20">
+                <div className="p-6 border-t-4 border-foreground bg-background">
+                  {/* Redirect directly or show the result */}
+                  <div className="flex justify-end mb-4">
+                    <Link 
+                      href={`/dashboard/results/${item._id}`}
+                      className="inline-flex items-center text-xs uppercase font-extrabold tracking-wider border-2 border-foreground bg-[#C3FF38] text-black px-3 py-1.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all rounded-sm"
+                    >
+                      Open Full Results Menu
+                    </Link>
+                  </div>
                   <AnalysisResult data={item} />
                 </div>
               )}

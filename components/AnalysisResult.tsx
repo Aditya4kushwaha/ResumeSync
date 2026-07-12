@@ -32,40 +32,40 @@ export default function AnalysisResult({ data }: { data: AnalysisData }) {
 
   return (
     <div className="w-full mt-8 space-y-6">
-      <div className="flex justify-between items-center bg-gray-900/40 p-4 rounded-lg border border-gray-800 backdrop-blur-sm">
-        <h2 className="text-xl font-semibold text-emerald-400">Analysis Results</h2>
+      <div className="flex justify-between items-center bg-card-bg p-4 border-4 border-foreground shadow-[4px_4px_0px_0px_var(--border)] rounded-sm">
+        <h2 className="text-lg font-black uppercase text-foreground">Analysis Results</h2>
         <div className="flex space-x-2">
           <button
             onClick={handleCopy}
-            className="flex items-center space-x-1 px-3 py-1.5 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-md text-sm transition-colors"
+            className="neo-btn py-1.5 px-3 text-xs uppercase border-2 flex items-center space-x-1 rounded-sm shadow-[2px_2px_0px_0px_var(--border)]"
           >
-            {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-3.5 h-3.5 text-green-500" /> : <Copy className="w-3.5 h-3.5" />}
             <span>{copied ? 'Copied' : 'Copy All'}</span>
           </button>
           <button
             onClick={handleDownload}
-            className="flex items-center space-x-1 px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-md text-sm transition-colors"
+            className="neo-btn neo-btn-accent py-1.5 px-3 text-xs uppercase border-2 flex items-center space-x-1 text-black rounded-sm shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"
           >
-            <Download className="w-4 h-4" />
+            <Download className="w-3.5 h-3.5" />
             <span>Download .txt</span>
           </button>
         </div>
       </div>
 
-      <div className="space-y-4">
-        <div className="bg-gray-900/40 p-6 rounded-lg border border-gray-800 backdrop-blur-sm">
-          <h3 className="text-lg font-medium text-emerald-500 mb-3 border-b border-gray-800 pb-2">Skill Gap Analysis</h3>
-          <p className="text-gray-300 whitespace-pre-wrap">{data.skillGap}</p>
+      <div className="space-y-6">
+        <div className="neo-card p-6 bg-card-bg border-4 border-foreground shadow-[6px_6px_0px_0px_var(--border)] rounded-sm">
+          <h3 className="text-base font-black uppercase text-foreground mb-3 border-b-2 border-foreground pb-2">Skill Gap Analysis</h3>
+          <p className="text-foreground font-medium whitespace-pre-wrap text-sm leading-relaxed">{data.skillGap}</p>
         </div>
         
-        <div className="bg-gray-900/40 p-6 rounded-lg border border-gray-800 backdrop-blur-sm">
-          <h3 className="text-lg font-medium text-emerald-500 mb-3 border-b border-gray-800 pb-2">Improved Resume</h3>
-          <p className="text-gray-300 whitespace-pre-wrap">{data.improvedResume}</p>
+        <div className="neo-card p-6 bg-card-bg border-4 border-foreground shadow-[6px_6px_0px_0px_var(--border)] rounded-sm">
+          <h3 className="text-base font-black uppercase text-foreground mb-3 border-b-2 border-foreground pb-2">Improved Resume</h3>
+          <p className="text-foreground font-mono whitespace-pre-wrap text-sm leading-relaxed">{data.improvedResume}</p>
         </div>
         
-        <div className="bg-gray-900/40 p-6 rounded-lg border border-gray-800 backdrop-blur-sm">
-          <h3 className="text-lg font-medium text-emerald-500 mb-3 border-b border-gray-800 pb-2">Interview Tips</h3>
-          <p className="text-gray-300 whitespace-pre-wrap">{data.interviewTips}</p>
+        <div className="neo-card p-6 bg-card-bg border-4 border-foreground shadow-[6px_6px_0px_0px_var(--border)] rounded-sm">
+          <h3 className="text-base font-black uppercase text-foreground mb-3 border-b-2 border-foreground pb-2">Interview Tips</h3>
+          <p className="text-foreground font-medium whitespace-pre-wrap text-sm leading-relaxed">{data.interviewTips}</p>
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -31,10 +32,9 @@ export default function Navbar() {
     };
     
     fetchUser();
-    setDropdownOpen(false); // Close dropdown on navigation
-  }, [pathname]); // Refetch on route change to catch login/logout events
+    setDropdownOpen(false);
+  }, [pathname]);
 
-  // Close dropdown clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -56,61 +56,62 @@ export default function Navbar() {
   const userDisplayName = user?.email?.split('@')[0] || 'User';
 
   return (
-    <nav className="border-b border-emerald-900/50 bg-black/50 backdrop-blur-md sticky top-0 z-50">
+    <nav className="border-b-4 border-foreground bg-background sticky top-0 z-50 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-emerald-600 bg-clip-text text-transparent">
-            ResumeSync
+        <div className="flex items-center justify-between h-20">
+          <Link href="/" className="text-2xl sm:text-3xl font-black tracking-tighter uppercase text-foreground hover:bg-accent px-2 py-1 border-2 border-transparent hover:border-foreground transition-all">
+            ResumeSync!
           </Link>
-          <div className="flex space-x-4 items-center">
+          
+          <div className="flex items-center space-x-3 sm:space-x-6">
             {user ? (
               <>
                 <Link
                   href="/dashboard"
-                  className={`text-sm font-medium transition-colors hover:text-emerald-400 ${
-                    pathname.startsWith('/dashboard') ? 'text-emerald-400' : 'text-gray-300'
+                  className={`text-sm font-bold uppercase tracking-wide px-3 py-1.5 border-2 border-transparent hover:border-foreground hover:bg-accent transition-all ${
+                    pathname.startsWith('/dashboard') 
+                      ? 'bg-accent text-black border-foreground' 
+                      : 'text-foreground'
                   }`}
                 >
                   Dashboard
                 </Link>
 
-                <div className="h-5 w-px bg-gray-700 mx-2" />
-                
                 {/* User Dropdown */}
                 <div className="relative" ref={dropdownRef}>
                   <button 
                     onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className="flex items-center space-x-2 px-3 py-1.5 rounded-lg border border-gray-800 bg-black/40 hover:bg-gray-800 transition-colors focus:outline-none"
+                    className="flex items-center space-x-2 px-3 py-1.5 border-2 border-foreground bg-card-bg hover:bg-accent transition-all font-bold text-sm uppercase shadow-[2px_2px_0px_0px_var(--border)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-[0px_0px_0px_0px_var(--border)]"
                   >
-                    <div className="w-6 h-6 rounded-full bg-emerald-900/50 border border-emerald-500/50 flex items-center justify-center text-emerald-400">
+                    <div className="w-5 h-5 rounded-full bg-accent border border-foreground flex items-center justify-center text-black">
                       <UserIcon className="w-3 h-3" />
                     </div>
-                    <span className="text-sm font-medium text-gray-300 capitalize">{userDisplayName}</span>
-                    <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
+                    <span className="text-foreground capitalize max-w-[80px] sm:max-w-none truncate">{userDisplayName}</span>
+                    <ChevronDown className={`w-4 h-4 text-foreground transition-transform ${dropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   {dropdownOpen && (
-                    <div className="absolute right-0 mt-3 w-56 bg-gray-900 border border-gray-800 rounded-xl shadow-2xl py-2 z-50 overflow-hidden transform opacity-100 scale-100 transition-all origin-top-right">
-                      <div className="px-4 py-3 border-b border-gray-800 mb-1 bg-black/20">
-                        <p className="text-xs text-gray-500 font-medium tracking-wide uppercase mb-1">Signed in as</p>
-                        <p className="text-sm text-gray-300 truncate font-medium">{user.email}</p>
+                    <div className="absolute right-0 mt-3 w-56 bg-card-bg border-4 border-foreground shadow-[4px_4px_0px_0px_var(--border)] py-0 z-50 overflow-hidden font-bold">
+                      <div className="px-4 py-3 border-b-2 border-foreground bg-accent text-black">
+                        <p className="text-[10px] tracking-widest uppercase mb-1 font-black opacity-80">User Email</p>
+                        <p className="text-sm truncate font-extrabold">{user.email}</p>
                       </div>
                       
                       <Link 
                         href="/history"
                         onClick={() => setDropdownOpen(false)}
-                        className="flex items-center space-x-3 px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-800 hover:text-emerald-400 border-l-2 border-transparent hover:border-emerald-500 transition-all"
+                        className="flex items-center space-x-3 px-4 py-3 text-sm text-foreground hover:bg-accent border-b-2 border-foreground transition-all"
                       >
                         <History className="w-4 h-4" />
-                        <span>Analysis History</span>
+                        <span className="uppercase tracking-wider">Analysis History</span>
                       </Link>
                       
                       <button 
                         onClick={handleLogout}
-                        className="flex w-full items-center space-x-3 px-4 py-2.5 text-sm text-red-400 hover:bg-gray-800 border-l-2 border-transparent hover:border-red-500 transition-all text-left"
+                        className="flex w-full items-center space-x-3 px-4 py-3 text-sm text-red-500 hover:bg-red-500 hover:text-white transition-all text-left"
                       >
                         <LogOut className="w-4 h-4" />
-                        <span>Log out</span>
+                        <span className="uppercase tracking-wider font-extrabold">Log out</span>
                       </button>
                     </div>
                   )}
@@ -121,19 +122,21 @@ export default function Navbar() {
                 <>
                   <Link
                     href="/login"
-                    className="text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                    className="text-sm font-bold uppercase tracking-wide px-3 py-1.5 border-2 border-transparent hover:border-foreground hover:bg-accent transition-all text-foreground"
                   >
                     Login
                   </Link>
                   <Link
                     href="/register"
-                    className="text-sm font-medium bg-emerald-600 text-white px-3 py-1.5 rounded-md hover:bg-emerald-500 transition-colors"
+                    className="text-sm font-bold uppercase tracking-wide bg-accent text-black px-4 py-2 border-2 border-foreground shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_rgba(0,0,0,1)] transition-all"
                   >
                     Register
                   </Link>
                 </>
               )
             )}
+
+
           </div>
         </div>
       </div>

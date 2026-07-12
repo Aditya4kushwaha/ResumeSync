@@ -27,6 +27,18 @@ const AnalysisSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    matchScore: {
+      type: Number,
+      default: 0,
+    },
+    matchedSkills: {
+      type: String,
+      default: '',
+    },
+    missingSkills: {
+      type: String,
+      default: '',
+    },
   },
   { timestamps: true }
 );

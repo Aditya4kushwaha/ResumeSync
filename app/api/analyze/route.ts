@@ -41,6 +41,9 @@ export async function POST(req: Request) {
       skillGap: safeString(analysisResult.skillGapAnalysis),
       improvedResume: safeString(analysisResult.improvedResume),
       interviewTips: safeString(analysisResult.interviewTips),
+      matchScore: typeof analysisResult.matchScore === 'number' ? analysisResult.matchScore : (parseInt(analysisResult.matchScore) || 0),
+      matchedSkills: safeString(analysisResult.matchedSkills || ''),
+      missingSkills: safeString(analysisResult.missingSkills || ''),
     });
 
     return NextResponse.json(

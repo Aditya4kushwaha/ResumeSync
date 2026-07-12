@@ -3,17 +3,101 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
+  --background: #f4f4f0;
+  --foreground: #000000;
+  --border: #000000;
+  --shadow-color: #000000;
+  --card-bg: #ffffff;
+  --accent: #C3FF38;
+  --accent-purple: #8B5CF6;
+  --muted: #6b7280;
+  --input-bg: #ffffff;
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background-color: var(--background);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .neo-card {
+    background-color: var(--card-bg);
+    border: 3px solid var(--border);
+    box-shadow: 4px 4px 0px 0px var(--shadow-color);
+    border-radius: 4px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .neo-card-hover:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px 0px var(--shadow-color);
+  }
+
+  .neo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    text-transform: uppercase;
+    background-color: var(--card-bg);
+    color: var(--foreground);
+    border: 3px solid var(--border);
+    box-shadow: 4px 4px 0px 0px var(--shadow-color);
+    border-radius: 4px;
+    padding: 0.5rem 1.25rem;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+  }
+
+  .neo-btn:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px 0px var(--shadow-color);
+  }
+
+  .neo-btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px 0px var(--shadow-color);
+  }
+
+  .neo-btn-accent {
+    background-color: var(--accent);
+    color: #000000;
+  }
+  
+  .neo-btn-purple {
+    background-color: var(--accent-purple);
+    color: #ffffff;
+  }
+
+  .neo-btn-purple.dark {
+    color: #000000;
+  }
+
+  .neo-input {
+    background-color: var(--input-bg);
+    color: var(--foreground);
+    border: 3px solid var(--border);
+    box-shadow: 2px 2px 0px 0px var(--shadow-color);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+
+  .neo-input:focus {
+    border-color: var(--accent-purple);
+    box-shadow: 4px 4px 0px 0px var(--shadow-color);
+  }
+
+  .neo-badge {
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 2px solid var(--border);
+    box-shadow: 2px 2px 0px 0px var(--shadow-color);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
   }
 }

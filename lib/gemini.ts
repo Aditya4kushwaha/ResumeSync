@@ -21,8 +21,11 @@ export async function analyzeResume(resume: string, jobDescription: string) {
     Resume: ${resume}
     Job Description: ${jobDescription}
 
-    Return JSON strictly matching this structure. IMPORTANT: All values MUST be plain strings (use \\n for line breaks). Do NOT use nested objects or arrays.
+    Return JSON strictly matching this structure. IMPORTANT: All values must be in the specified type (matchScore must be a number from 0 to 100, others must be plain strings). Do NOT use nested objects or arrays.
     {
+      "matchScore": 75,
+      "matchedSkills": "Skill1, Skill2, Skill3 (comma-separated string of skills matching the JD found in the resume)",
+      "missingSkills": "SkillA, SkillB, SkillC (comma-separated string of skills required by the JD but missing from the resume)",
       "skillGapAnalysis": "Detailed missing skills analysis (string)",
       "improvedResume": "Optimized resume content (string)",
       "interviewTips": "3-5 interview questions and tips (string)"

@@ -69,28 +69,32 @@ export default function ResumePage() {
 
   return (
     <div className="max-w-4xl mx-auto py-8">
-      <Link href={`/dashboard/results/${params.id}`} className="inline-flex items-center text-emerald-500 hover:text-emerald-400 mb-6 transition-colors">
-        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Analysis Menu
+      {/* Back to analysis menu */}
+      <Link href={`/dashboard/results/${params.id}`} className="inline-flex items-center text-foreground font-extrabold uppercase text-xs sm:text-sm tracking-wider border-2 border-foreground bg-card-bg px-3 py-1.5 shadow-[2px_2px_0px_0px_var(--border)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_0px_var(--border)] transition-all mb-8 rounded-sm">
+        <ArrowLeft className="w-4 h-4 mr-2 stroke-[2.5]" /> Back to Analysis Menu
       </Link>
       
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-        <div className="flex items-center">
-          <FileText className="h-8 w-8 text-emerald-500 mr-3" />
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent">
+        <div className="text-left">
+          <div className="bg-[#C3FF38] text-black border-4 border-black px-4 py-1.5 inline-block tracking-widest font-black uppercase text-xs sm:text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-4 rounded-sm">
+            Resume
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-foreground flex items-center">
+            <FileText className="h-8 w-8 text-foreground mr-3 stroke-[2.5]" />
             Updated Resume
           </h1>
         </div>
         
         <button 
           onClick={downloadPDF}
-          className="flex items-center px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg transition-colors font-medium border border-emerald-500 shadow-lg"
+          className="neo-btn neo-btn-accent py-2.5 px-4 font-black uppercase text-sm border-4 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] text-black transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center rounded-sm"
         >
-          <Download className="w-4 h-4 mr-2" />
+          <Download className="w-4 h-4 mr-2 stroke-[2.5]" />
           Download as PDF
         </button>
       </div>
       
-      <div className="bg-gray-900/50 p-8 rounded-xl border border-gray-800 shadow-xl whitespace-pre-wrap text-gray-300 font-mono text-sm leading-relaxed">
+      <div className="neo-card p-8 bg-card-bg border-4 border-foreground shadow-[8px_8px_0px_0px_var(--border)] whitespace-pre-wrap text-foreground font-mono text-sm leading-relaxed rounded-sm">
         {data.improvedResume}
       </div>
     </div>

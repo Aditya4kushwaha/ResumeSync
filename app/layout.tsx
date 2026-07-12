@@ -1,6 +1,13 @@
 import type { Metadata } from 'next';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import Navbar from '@/components/Navbar';
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'AI Resume Analyzer',
@@ -14,22 +21,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="antialiased text-white min-h-screen bg-black">
-        <div className="min-h-screen w-full relative">
-          {/* Emerald Depths Background with Top Glow */}
-          <div
-            className="absolute inset-0 z-0 pointer-events-none fixed"
-            style={{
-              background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(16, 185, 129, 0.25), transparent 70%), #000000',
-            }}
-          />
-          
-          <div className="relative z-10 flex flex-col min-h-screen">
-            <Navbar />
-            <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              {children}
-            </main>
-          </div>
+      <body className={`${plusJakarta.className} antialiased min-h-screen bg-background text-foreground`}>
+        <div className="min-h-screen w-full relative flex flex-col">
+          <Navbar />
+          <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {children}
+          </main>
         </div>
       </body>
     </html>

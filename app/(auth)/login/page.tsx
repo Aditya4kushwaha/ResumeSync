@@ -41,40 +41,40 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8 bg-gray-900/50 p-8 rounded-2xl border border-gray-800 backdrop-blur-md">
-        <div>
-          <h2 className="mt-2 text-center text-3xl font-bold tracking-tight text-white">
-            Welcome back
+    <div className="flex min-h-[75vh] items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md bg-card-bg border-4 border-foreground p-8 rounded-sm shadow-[8px_8px_0px_0px_var(--border)]">
+        <div className="mb-8">
+          <h2 className="text-center text-3xl font-black uppercase tracking-tight text-foreground">
+            Welcome Back!
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-400">
-            Sign in to access your resume analysis
+          <p className="mt-2 text-center text-sm font-bold text-muted uppercase tracking-wider">
+            Sign in to access your dashboard
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-900/50 border border-red-500/50 text-red-200 px-4 py-3 rounded-md text-sm">
+            <div className="bg-red-100 border-2 border-red-500 text-red-700 px-4 py-3 rounded-sm text-sm font-bold">
               {error}
             </div>
           )}
-          <div className="space-y-4 rounded-md shadow-sm">
+          <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium text-gray-300">Email Address</label>
+              <label className="text-xs font-black uppercase tracking-widest text-foreground block mb-1">Email Address</label>
               <input
                 type="email"
                 required
-                className="mt-1 relative block w-full rounded-md border border-gray-700 bg-black/50 px-3 py-2 text-white outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 sm:text-sm"
+                className="neo-input w-full"
                 placeholder="you@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-300">Password</label>
+              <label className="text-xs font-black uppercase tracking-widest text-foreground block mb-1">Password</label>
               <input
                 type="password"
                 required
-                className="mt-1 relative block w-full rounded-md border border-gray-700 bg-black/50 px-3 py-2 text-white outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 sm:text-sm"
+                className="neo-input w-full"
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -86,15 +86,15 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="group relative flex w-full justify-center rounded-md border border-transparent bg-emerald-600 py-2 px-4 text-sm font-medium text-white hover:bg-emerald-500 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="neo-btn neo-btn-accent w-full py-3.5 text-base border-4 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] disabled:opacity-50 disabled:cursor-not-allowed text-black font-black uppercase transition-all shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
             >
               {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </div>
           
-          <div className="text-sm text-center text-gray-400">
+          <div className="text-sm text-center font-bold text-muted uppercase tracking-wide">
             Don&apos;t have an account?{' '}
-            <Link href="/register" className="font-medium text-emerald-400 hover:text-emerald-300">
+            <Link href="/register" className="text-[#8B5CF6] underline font-extrabold hover:text-foreground">
               Register here
             </Link>
           </div>
