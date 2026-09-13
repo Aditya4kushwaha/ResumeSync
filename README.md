@@ -1,4 +1,4 @@
-# ResumeSync!
+# ResumeSync
 
 ResumeSync is a premium, AI-powered ATS resume optimizer and comparison platform. It is designed to align your resume with target job descriptions, discover keyword gaps, generate tailored interview preparation questions, and output optimized, ATS-friendly documents in seconds.
 
